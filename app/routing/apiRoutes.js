@@ -42,16 +42,17 @@ module.exports = function (app) {
 
     var lowestScore = 1000;
     var totalScore = 0;
-    userData.forEach(function(user){
+    var lowestIdx = -1;
+    userData.forEach(function(user, userIdx){
       totalScore = 0;
-      user.scores.forEach(function(score){
-        totalScore = Math.abs(score - newUser.scores);
+      user.scores.forEach(function(score, scoreIdx){
+        totalScore = Math.abs(score - newUser.scores[scoreIdx]);
         console.log("New user score", newUser.scores);
       });
       console.log("Total Score", totalScore);
       if (totalScore < lowestScore) {
         lowestScore = totalScore;
-        lowestIdx = i;
+        lowestIdx = userIdx;
       }
     });
 
